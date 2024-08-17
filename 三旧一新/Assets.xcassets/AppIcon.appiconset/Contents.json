@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "238903370_0_final_deepened.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "238903370_0_final_green_matching_v2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -1,0 +1,543 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8">
+    <link href="RLStyle.css" rel="stylesheet" type="text/css" />
+    <style>
+        .yf {
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bolder;
+            font-size: 40px; /* 增加年份和月份的字体大小 */
+            font-family: "微软雅黑";
+            color: #FFFFFF;
+        }
+
+         /* 闪烁效果的 CSS 类 */
+   
+         .blinking {
+        animation: blinkingEffect 1s infinite;
+    }
+
+    @keyframes blinkingEffect {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    /* 亮色模式下的闪烁颜色 */
+    .blinking-light {
+        color: #ff0000 !important; /* 红色闪烁 */
+    }
+
+    /* 暗夜模式下的闪烁颜色 */
+    @media (prefers-color-scheme: dark) {
+        .blinking-dark {
+            color: #ff4500 !important; /* 橙红色闪烁 */
+        }
+    }
+    </style>
+    <script>
+        function setYear() {
+            var currentYear = new Date().getFullYear();
+            var elements = document.getElementsByClassName('dynamic-year');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].innerText = currentYear + '年';
+            }
+        }
+
+        function scrollToCurrentMonth() {
+            var currentMonth = new Date().getMonth() + 1; // 获取当前月份（1-12）
+            var monthElement = document.querySelector('a[name="' + currentMonth + '"]');
+            if (monthElement) {
+                monthElement.scrollIntoView({ behavior: "smooth" }); // 平滑滚动到当前月份
+            } else {
+                console.log("未找到当前月份元素。");
+            }
+        }
+        
+function applyBlinkingEffect() {
+    var today = new Date();
+    var currentDay = today.getDate();
+    var currentMonth = today.getMonth() + 1;
+
+    // 获取当前月份的元素
+    var monthElement = document.querySelector('a[name="' + currentMonth + '"]');
+    var monthTable = monthElement ? monthElement.closest('table') : null;
+
+    if (!monthTable) {
+        console.error("无法找到当前月份的表格。");
+        return;
+    }
+
+    // 获取当前日期的元素
+    var dayElement = monthTable.querySelector('a[href*="ynyb_B_' + currentDay + '"]');
+    if (!dayElement) {
+        console.error("无法找到当前日期的元素。");
+        return;
+    }
+
+    // 检查当前是否为暗夜模式
+    var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // 应用闪烁效果
+    if (isDarkMode) {
+        dayElement.classList.add('blinking', 'blinking-dark');
+    } else {
+        dayElement.classList.add('blinking', 'blinking-light');
+    }
+    console.log("应用了闪烁效果");
+}
+
+// 确保在页面加载后运行此函数
+window.onload = function() {
+    applyBlinkingEffect();
+};
+
+window.onload = function() {
+    setYear(); // 设置年份
+    scrollToCurrentMonth(); // 滚动到当前月份
+    applyBlinkingEffect(); // 应用当前日期的闪烁效果
+
+    // 添加滚动事件监听器
+    window.addEventListener('scroll', function() {
+        highlightCurrentDateBasedOnScroll();
+    });
+};
+
+function highlightCurrentDateBasedOnScroll() {
+    var scrollTop = window.scrollY;
+    var today = new Date();
+    var currentDay = today.getDate();
+    var currentMonth = today.getMonth() + 1;
+
+    // 获取所有月份元素
+    var monthElements = document.querySelectorAll('td.yf');
+
+    for (var i = 0; i < monthElements.length; i++) {
+        var rect = monthElements[i].getBoundingClientRect();
+        
+        // 检查月份元素是否在可见范围内
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            // 找到当前月份的表格
+            var monthElement = document.querySelector('a[name="' + currentMonth + '"]');
+            if (monthElement) {
+                var monthTable = monthElement.closest('table');
+                if (monthTable) {
+                    // 获取当前日期元素并应用闪烁效果
+                    var dayElement = monthTable.querySelector('a[href*="ynyb_B_' + currentDay + '"]');
+                    if (dayElement) {
+                        // 检查当前是否为暗夜模式
+                        var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                        // 应用闪烁效果
+                        if (isDarkMode) {
+                            dayElement.classList.add('blinking', 'blinking-dark');
+                        } else {
+                            dayElement.classList.add('blinking', 'blinking-light');
+                        }
+                    }
+                }
+            }
+            break; // 只需要找到第一个可见的月份即可
+        }
+    }
+}
+    </script>
+</head>
+<body><a name="top"></a>
+<table cellspacing="1" border="0"><a name="1"></a></tr><td class="yf" colspan="7"><a style="color:FFFFFF;"><span class="dynamic-year"></span>1月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr><tr>
+        <td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_1.html">1<p class="xxx">太一<br>创一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_2.html">2<p class="xxx">太二<br>创三～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_3.html">3<p class="xxx">太三<br>创六～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_4.html">4<p class="xxx">太四<br>创九1～十一9</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_5.html">5<p class="xxx">太五1～16<br>创十一10～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_6.html">6<p class="xxx">太五17～48<br>创十四～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_7.html">7<p class="xxx">太六<br>创十七～十八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_8.html">8<p class="xxx">太七<br>创十九～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_9.html">9<p class="xxx">太八1～17<br>创二一～二三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_10.html">10<p class="xxx">太八18～九8<br>创二四～二五18</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_11.html">11<p class="xxx">太九9～34<br>创二五19～二七26</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_12.html">12<p class="xxx">太九35～十15<br>创二七27～二九30</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_13.html">13<p class="xxx">太十16～十一1<br>创二九31～三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_14.html">14<p class="xxx">太十一2～30<br>创三二～三四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_15.html">15<p class="xxx">太十二1～21<br>创三五～三六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_16.html">16<p class="xxx">太十二22～50<br>创三七～三八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_17.html">17<p class="xxx">太十三1～30<br>创三九～四一13</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_18.html">18<p class="xxx">太十三31～52<br>创四一14～四二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_19.html">19<p class="xxx">太十三53～十四13<br>创四三～四四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_20.html">20<p class="xxx">太十四14～36<br>创四五～四六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_21.html">21<p class="xxx">太十五1～28<br>创四七～四八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_22.html">22<p class="xxx">太十五29～十六12<br>创四九～五十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_23.html">23<p class="xxx">太十六13～27<br>出一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_24.html">24<p class="xxx">太十六28～十七<br>出四～七7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_25.html">25<p class="xxx">太十八<br>出七8～八19</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_26.html">26<p class="xxx">太十九1～15<br>出八20～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_27.html">27<p class="xxx">太十九16～二十16<br>出十一～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_28.html">28<p class="xxx">太二十17～二一11<br>出十四～十五21</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_29.html">29<p class="xxx">太二一12～22<br>出十五22～十八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_30.html">30<p class="xxx">太二一23～46<br>出十九～二一6</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_31.html">31<p class="xxx">太二二1～14<br>出二一7～二三</p></a></td>
+        <td>　</td></tr></table><table cellspacing="1" border="0"><a name="2"></a></tr><td class="yf" colspan="7"><a style="colorFFFFFF;"><span class="dynamic-year"></span>2月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_32.html">1<p class="xxx">太二二15～46<br>出二四～二六30</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_33.html">2<p class="xxx">太二三1～39<br>出二六31～二八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_34.html">3<p class="xxx">太二四1～31<br>出二九～三十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_35.html">4<p class="xxx">太二四32～51<br>出三一～三三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_36.html">5<p class="xxx">太二五1～30<br>出三四～三六7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_37.html">6<p class="xxx">太二五31～46<br>出三六8～三八8</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_38.html">7<p class="xxx">太二六1～30<br>出三八9～三九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_39.html">8<p class="xxx">太二六31～56<br>出四十</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_40.html">9<p class="xxx">太二六57～75<br>利一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_41.html">10<p class="xxx">太二七1～26<br>利四～六7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_42.html">11<p class="xxx">太二七27～56<br>利六8～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_43.html">12<p class="xxx">太二七57～66<br>利八～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_44.html">13<p class="xxx">太二八1～20<br>利十一～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_45.html">14<p class="xxx">可一1～13<br>利十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_46.html">15<p class="xxx">可一14～22<br>利十四</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_47.html">16<p class="xxx">可一23～45<br>利十五～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_48.html">17<p class="xxx">可二1～三6<br>利十八～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_49.html">18<p class="xxx">可三7～35<br>利二一～二二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_50.html">19<p class="xxx">可四1～20<br>利二三～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_51.html">20<p class="xxx">可四21～34<br>利二五～二六13</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_52.html">21<p class="xxx">可四35～五20<br>利二六14～二七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_53.html">22<p class="xxx">可五21～43<br>民一～二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_54.html">23<p class="xxx">可六1～29<br>民三～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_55.html">24<p class="xxx">可六30～56<br>民五～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_56.html">25<p class="xxx">可七1～30<br>民七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_57.html">26<p class="xxx">可七31～八26<br>民八～十10</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_58.html">27<p class="xxx">可八27～九13<br>民十11～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_59.html">28<p class="xxx">可九14～32<br>民十三～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_59.html">29<p class="xxx">可九14～32<br>民十三～十四</p></a></td></tr></table><table cellspacing="1" border="0"><a name="3"></a></tr><td class="yf" colspan="7"><a style="color:FFFFFF;"><span class="dynamic-year"></span>3月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr>
+        <td><a class="page-navi" href="ynyb_B_60.html">1<p class="xxx">可九33～50<br>民十五～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_61.html">2<p class="xxx">可十1～31<br>民十七～十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_62.html">3<p class="xxx">可十32～52<br>民二十～二一20</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_63.html">4<p class="xxx">可十一1～26<br>民二一21～二二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_64.html">5<p class="xxx">可十一27～十二17<br>民二三～二五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_65.html">6<p class="xxx">可十二18～44<br>民二六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_66.html">7<p class="xxx">可十三1～37<br>民二七～二八</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_67.html">8<p class="xxx">可十四1～26<br>民二九～三十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_68.html">9<p class="xxx">可十四27～42<br>民三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_69.html">10<p class="xxx">可十四43～52<br>民三二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_70.html">11<p class="xxx">可十四53～72<br>民三三～三四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_71.html">12<p class="xxx">可十五1～15<br>民三五～三六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_72.html">13<p class="xxx">可十五16～47<br>申一～二23</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_73.html">14<p class="xxx">可十六1～20<br>申二24～四43</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_74.html">15<p class="xxx">路一1～25<br>申四44～七8</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_75.html">16<p class="xxx">路一26～56<br>申七9～十11</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_76.html">17<p class="xxx">路一57～80<br>申十12～十一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_77.html">18<p class="xxx">路二1～20<br>申十二～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_78.html">19<p class="xxx">路二21～52<br>申十四～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_79.html">20<p class="xxx">路三1～22<br>申十七～十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_80.html">21<p class="xxx">路三23～38<br>申二十～二二12</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_81.html">22<p class="xxx">路四1～13<br>申二二13～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_82.html">23<p class="xxx">路四14～30<br>申二五～二八14</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_83.html">24<p class="xxx">路四31～44<br>申二八15～二九17</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_84.html">25<p class="xxx">路五1～16<br>申二九18～三一29</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_85.html">26<p class="xxx">路五17～39<br>申三一30～三二47</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_86.html">27<p class="xxx">路六1～11<br>申三二48～三四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_87.html">28<p class="xxx">路六12～49<br>书一～二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_88.html">29<p class="xxx">路七1～17<br>书三～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_89.html">30<p class="xxx">路七18～50<br>书五～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_90.html">31<p class="xxx">路八1～25<br>书七～八</p></a></td><td>　</td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="4"></a></tr><td class="yf" colspan="7"><a style="color:FFFFFF;"><span class="dynamic-year"></span>4月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr><tr><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_91.html">1<p class="xxx">路八26～56<br>书九～十27</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_92.html">2<p class="xxx">路九1～17<br>书十28～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_93.html">3<p class="xxx">路九18～36<br>书十三～十四5</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_94.html">4<p class="xxx">路九37～50<br>书十四6～十五</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_95.html">5<p class="xxx">路九51～62<br>书十六～十八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_96.html">6<p class="xxx">路十1～24<br>书十九～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_97.html">7<p class="xxx">路十25～37<br>书二一～二二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_98.html">8<p class="xxx">路十38～十一13<br>书二三～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_99.html">9<p class="xxx">路十一14～32<br>士一～三6</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_100.html">10<p class="xxx">路十一33～54<br>士三7～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_101.html">11<p class="xxx">路十二1～34<br>士六～八32</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_102.html">12<p class="xxx">路十二35～48<br>士八33～十5</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_103.html">13<p class="xxx">路十二49～59<br>士十6～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_104.html">14<p class="xxx">路十三1～21<br>士十三～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_105.html">15<p class="xxx">路十三22～35<br>士十七～十八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_106.html">16<p class="xxx">路十四1～14<br>士十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_107.html">17<p class="xxx">路十四15～35<br>士二十～二一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_108.html">18<p class="xxx">路十五1～32<br>得一～二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_109.html">19<p class="xxx">路十六1～18<br>得三～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_110.html">20<p class="xxx">路十六19～十七10<br>撒上一～二26</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_111.html">21<p class="xxx">路十七11～37<br>撒上二27～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_112.html">22<p class="xxx">路十八1～30<br>撒上四～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_113.html">23<p class="xxx">路十八31～43<br>撒上八～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_114.html">24<p class="xxx">路十九1～27<br>撒上十一～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_115.html">25<p class="xxx">路十九28～48<br>撒上十三～十四</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_116.html">26<p class="xxx">路二十1～19<br>撒上十五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_117.html">27<p class="xxx">路二十20～二一4<br>撒上十六～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_118.html">28<p class="xxx">路二一5～36<br>撒上十八～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_119.html">29<p class="xxx">路二一37～二二23<br>撒上二一～二三28</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_120.html">30<p class="xxx">路二二24～46<br>撒上二三29～二六</p></a></td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="5"></a></tr><td class="yf" colspan="7"><a style="color:;"><span class="dynamic-year"></span>5月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_121.html">1<p class="xxx">路二二47～71<br>撒上二七～三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_122.html">2<p class="xxx">路二三1～25<br>撒下一～四</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_123.html">3<p class="xxx">路二三26～56<br>撒下五～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_124.html">4<p class="xxx">路二四1～12<br>撒下八～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_125.html">5<p class="xxx">路二四13～35<br>撒下十一～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_126.html">6<p class="xxx">路二四36～53<br>撒下十三～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_127.html">7<p class="xxx">约一1～18<br>撒下十五～十九8上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_128.html">8<p class="xxx">约一19～51<br>撒下十九8下～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_129.html">9<p class="xxx">约二1～22<br>撒下二一～二三7</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_130.html">10<p class="xxx">约二23～三13<br>撒下二三8～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_131.html">11<p class="xxx">约三14～36<br>王上一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_132.html">12<p class="xxx">约四1～14<br>王上二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_133.html">13<p class="xxx">约四15～26<br>王上三～四19</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_134.html">14<p class="xxx">约四27～54<br>王上四20～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_135.html">15<p class="xxx">约五1～16<br>王上七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_136.html">16<p class="xxx">约五17～47<br>王上八</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_137.html">17<p class="xxx">约六1～21<br>王上九～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_138.html">18<p class="xxx">约六22～31<br>王上十一1～43上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_139.html">19<p class="xxx">约六32～71<br>王上十一43下～十三32</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_140.html">20<p class="xxx">约七1～36<br>王上十三33～十四31上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_141.html">21<p class="xxx">约七37～52<br>王上十四31下～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_142.html">22<p class="xxx">约七53～八36<br>王上十七～十八16</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_143.html">23<p class="xxx">约八37～59<br>王上十八17～十九</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_144.html">24<p class="xxx">约九1～13<br>王上二十～二一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_145.html">25<p class="xxx">约九14～41<br>王上二二1～50</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_146.html">26<p class="xxx">约十1～21<br>王上二二51～王下二18</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_147.html">27<p class="xxx">约十22～42<br>王下二19～四17</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_148.html">28<p class="xxx">约十一1～40<br>王下四18～六7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_149.html">29<p class="xxx">约十一41～57<br>王下六8～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_150.html">30<p class="xxx">约十二1～36上<br>王下九～十</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_151.html">31<p class="xxx">约十二36下～50<br>王下十一～十二</p></a></td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="6"></a></tr><td class="yf" colspan="7"><a style="color:FFFFF;"><span class="dynamic-year"></span>6月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_152.html">1<p class="xxx">约十三1～17<br>王下十三～十五22上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_153.html">2<p class="xxx">约十三18～38<br>王下十五22下～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_154.html">3<p class="xxx">约十四1～31<br>王下十八～十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_155.html">4<p class="xxx">约十五～十六4<br>王下二十～二一26上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_156.html">5<p class="xxx">约十六5～33<br>王下二一26下～二三30上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_157.html">6<p class="xxx">约十七<br>王下二三30下～二五</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_158.html">7<p class="xxx">约十八1～38上<br>代上一～二2</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_159.html">8<p class="xxx">约十八38下～十九16<br>代上二3～四23</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_160.html">9<p class="xxx">约十九17～42<br>代上四24～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_161.html">10<p class="xxx">约二十<br>代上六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_162.html">11<p class="xxx">约二一<br>代上七～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_163.html">12<p class="xxx">徒一1～14<br>代上九1～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_164.html">13<p class="xxx">徒一15～26<br>代上十一～十二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_165.html">14<p class="xxx">徒二1～13<br>代上十三～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_166.html">15<p class="xxx">徒二14～47<br>代上十七～十八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_167.html">16<p class="xxx">徒三1～26<br>代上十九～二一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_168.html">17<p class="xxx">徒四1～12<br>代上二二～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_169.html">18<p class="xxx">徒四13～31<br>代上二五～二六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_170.html">19<p class="xxx">徒四32～五11<br>代上二七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_171.html">20<p class="xxx">徒五12～32<br>代上二八～二九</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_172.html">21<p class="xxx">徒五33～42<br>代下一～五1</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_173.html">22<p class="xxx">徒六1～七1<br>代下五2～七10</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_174.html">23<p class="xxx">徒七2～53<br>代下七11～九31上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_175.html">24<p class="xxx">徒七54～八3<br>代下九31下～十二16上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_176.html">25<p class="xxx">徒八4～25<br>代下十二16下～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_177.html">26<p class="xxx">徒八26～40<br>代下十七～二一1上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_178.html">27<p class="xxx">徒九1～30<br>代下二一1下～二二9</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_179.html">28<p class="xxx">徒九31～43<br>代下二二10～二四27上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_180.html">29<p class="xxx">徒十1～16<br>代下二四27下～二五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_181.html">30<p class="xxx">徒十17～48<br>代下二六～二八27上</p></a></td><td>　</td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="7"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>7月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_182.html">1<p class="xxx">徒十一1～18<br>代下二八27下～三一1</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_183.html">2<p class="xxx">徒十一19～30<br>代下三一2～三二33上</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_184.html">3<p class="xxx">徒十二1～24<br>代下三二33下～三五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_185.html">4<p class="xxx">徒十二25～十三12<br>代下三六</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_186.html">5<p class="xxx">徒十三13～52<br>拉一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_187.html">6<p class="xxx">徒十四<br>拉三～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_188.html">7<p class="xxx">徒十五1～34<br>拉五～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_189.html">8<p class="xxx">徒十五35～十六18<br>拉七～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_190.html">9<p class="xxx">徒十六19～40<br>拉九～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_191.html">10<p class="xxx">徒十七<br>尼一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_192.html">11<p class="xxx">徒十八1～22<br>尼四～七4</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_193.html">12<p class="xxx">徒十八23～十九20<br>尼七5～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_194.html">13<p class="xxx">徒十九21～41<br>尼九～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_195.html">14<p class="xxx">徒二十1～12<br>尼十一～十二26</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_196.html">15<p class="xxx">徒二十13～38<br>尼十二27～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_197.html">16<p class="xxx">徒二一1～17<br>斯一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_198.html">17<p class="xxx">徒二一18～39<br>斯三～八2</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_199.html">18<p class="xxx">徒二一40～二二29<br>斯八3～十</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_200.html">19<p class="xxx">徒二二30～二三15<br>伯一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_201.html">20<p class="xxx">徒二三16～35<br>伯四～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_202.html">21<p class="xxx">徒二四1～27<br>伯八～十一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_203.html">22<p class="xxx">徒二五1～27<br>伯十二～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_204.html">23<p class="xxx">徒二六1～32<br>伯十五～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_205.html">24<p class="xxx">徒二七1～26<br>伯十八～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_206.html">25<p class="xxx">徒二七27～44<br>伯二一～二二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_207.html">26<p class="xxx">徒二八1～10<br>伯二三～二五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_208.html">27<p class="xxx">徒二八11～31<br>伯二六～二九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_209.html">28<p class="xxx">罗一1～17<br>伯三十～三二1</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_210.html">29<p class="xxx">罗一18～32<br>伯三二2～三四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_211.html">30<p class="xxx">罗二1～16<br>伯三五～三七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_212.html">31<p class="xxx">罗二17～三8<br>伯三八～四十14</p></a></td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="8"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>8月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_213.html">1<p class="xxx">罗三9～20<br>伯四十15～四二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_214.html">2<p class="xxx">罗三21～四25<br>诗一～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_215.html">3<p class="xxx">罗五1～11<br>诗七～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_216.html">4<p class="xxx">罗五12～21<br>诗十一～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_217.html">5<p class="xxx">罗六1～23<br>诗十八～二十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_218.html">6<p class="xxx">罗七1～25<br>诗二一～二五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_219.html">7<p class="xxx">罗八1～13<br>诗二六～三十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_220.html">8<p class="xxx">罗八14～39<br>诗三一～三三</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_221.html">9<p class="xxx">罗九1～18<br>诗三四～三六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_222.html">10<p class="xxx">罗九19～十3<br>诗三七～三八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_223.html">11<p class="xxx">罗十4～21<br>诗三九～四一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_224.html">12<p class="xxx">罗十一1～10<br>诗四二～四五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_225.html">13<p class="xxx">罗十一11～36<br>诗四六～四九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_226.html">14<p class="xxx">罗十二<br>诗五十～五二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_227.html">15<p class="xxx">罗十三<br>诗五三～五八</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_228.html">16<p class="xxx">罗十四～十五13<br>诗五九～六四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_229.html">17<p class="xxx">罗十五14～十六<br>诗六五～六八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_230.html">18<p class="xxx">林前一1～9<br>诗六九～七二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_231.html">19<p class="xxx">林前一10～31<br>诗七三～七七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_232.html">20<p class="xxx">林前二1～16<br>诗七八～七九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_233.html">21<p class="xxx">林前三1～23<br>诗八十～八九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_234.html">22<p class="xxx">林前四1～21<br>诗九十～九七</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_235.html">23<p class="xxx">林前五1～13<br>诗九八～一○二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_236.html">24<p class="xxx">林前六1～20<br>诗一○三～一○六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_237.html">25<p class="xxx">林前七1～24<br>诗一○七～一一○</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_238.html">26<p class="xxx">林前七25～40<br>诗一一一～一一八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_239.html">27<p class="xxx">林前八<br>诗一一九1～88</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_240.html">28<p class="xxx">林前九<br>诗一一九89～176</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_241.html">29<p class="xxx">林前十～十一1<br>诗一二○～一三一</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_242.html">30<p class="xxx">林前十一2～34<br>诗一三二～一三四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_243.html">31<p class="xxx">林前十二<br>诗一三五～一三九</p></a></td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="9"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>9月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_244.html">1<p class="xxx">林前十三<br>诗一四○～一四四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_245.html">2<p class="xxx">林前十四1～25<br>诗一四五～一五○</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_246.html">3<p class="xxx">林前十四26～40<br>箴一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_247.html">4<p class="xxx">林前十五1～28<br>箴三～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_248.html">5<p class="xxx">林前十五29～58<br>箴六～七</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_249.html">6<p class="xxx">林前十六<br>箴八～九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_250.html">7<p class="xxx">林后一～二11<br>箴十～十一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_251.html">8<p class="xxx">林后二12～三11<br>箴十二～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_252.html">9<p class="xxx">林后三12～四6<br>箴十四～十五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_253.html">10<p class="xxx">林后四7～五15<br>箴十六～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_254.html">11<p class="xxx">林后五16～六13<br>箴十八～十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_255.html">12<p class="xxx">林后六14～七<br>箴二十～二一</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_256.html">13<p class="xxx">林后八<br>箴二二～二三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_257.html">14<p class="xxx">林后九<br>箴二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_258.html">15<p class="xxx">林后十<br>箴二五～二六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_259.html">16<p class="xxx">林后十一<br>箴二七～二八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_260.html">17<p class="xxx">林后十二1～18<br>箴二九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_261.html">18<p class="xxx">林后十二19～十三<br>箴三十～三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_262.html">19<p class="xxx">加一～二10<br>传一～三</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_263.html">20<p class="xxx">加二11～21<br>传三～五7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_264.html">21<p class="xxx">加三<br>传五8～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_265.html">22<p class="xxx">加四<br>传七～十一8</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_266.html">23<p class="xxx">加五1～15<br>传十一9～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_267.html">24<p class="xxx">加五16～六18<br>歌一～四15</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_268.html">25<p class="xxx">弗一<br>歌四16～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_269.html">26<p class="xxx">弗二<br>赛一～五</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_270.html">27<p class="xxx">弗三<br>赛六～九7</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_271.html">28<p class="xxx">弗四1～16<br>赛九8～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_272.html">29<p class="xxx">弗四17～五21<br>赛十三～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_273.html">30<p class="xxx">弗五22～六24<br>赛十七～二十</p></a></td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="10"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>10月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr><tr>
+        <td>　</td><td>　</td><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_274.html">1<p class="xxx">腓一1～18<br>赛二一～二三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_275.html">2<p class="xxx">腓一19～30<br>赛二四～二七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_276.html">3<p class="xxx">腓二<br>赛二八～二九</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_277.html">4<p class="xxx">腓三<br>赛三十～三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_278.html">5<p class="xxx">腓四<br>赛三二～三五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_279.html">6<p class="xxx">西一1～14<br>赛三六～三八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_280.html">7<p class="xxx">西一15～29<br>赛三九～四十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_281.html">8<p class="xxx">西二<br>赛四一～四二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_282.html">9<p class="xxx">西三1～11<br>赛四三～四五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_283.html">10<p class="xxx">西三12～四6<br>赛四六～四九</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_284.html">11<p class="xxx">西四7～18<br>赛五十～五二12</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_285.html">12<p class="xxx">帖前一<br>赛五二13～五五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_286.html">13<p class="xxx">帖前二<br>赛五六～五八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_287.html">14<p class="xxx">帖前三<br>赛五九～六一3</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_288.html">15<p class="xxx">帖前四<br>赛六一4～六三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_289.html">16<p class="xxx">帖前五<br>赛六四～六六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_290.html">17<p class="xxx">帖后一<br>耶一～四2</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_291.html">18<p class="xxx">帖后二～三5<br>耶四3～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_292.html">19<p class="xxx">帖后三6～18<br>耶七～八22</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_293.html">20<p class="xxx">提前一<br>耶九～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_294.html">21<p class="xxx">提前二<br>耶十一～十三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_295.html">22<p class="xxx">提前三<br>耶十四～十五9</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_296.html">23<p class="xxx">提前四<br>耶十五10～十七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_297.html">24<p class="xxx">提前五<br>耶十八～二十</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_298.html">25<p class="xxx">提前六<br>耶二一～二三8</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_299.html">26<p class="xxx">提后一<br>耶二三9～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_300.html">27<p class="xxx">提后二<br>耶二五～二六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_301.html">28<p class="xxx">提后三<br>耶二七～二八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_302.html">29<p class="xxx">提后四<br>耶二九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_303.html">30<p class="xxx">多一<br>耶三十～三一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_304.html">31<p class="xxx">多二<br>耶三二～三三</p></a></td></tr></table><table cellspacing="1" border="0"><a name="11"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>11月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr>
+        <td><a class="page-navi" href="ynyb_B_305.html">1<p class="xxx">多三<br>耶三四～三五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_306.html">2<p class="xxx">门<br>耶三六～三八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_307.html">3<p class="xxx">来一<br>耶三九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_308.html">4<p class="xxx">来二<br>耶四十～四一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_309.html">5<p class="xxx">来三～四13<br>耶四二～四四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_310.html">6<p class="xxx">来四14～五10<br>耶四五～四七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_311.html">7<p class="xxx">来五11～六20<br>耶四八～四九6</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_312.html">8<p class="xxx">来七<br>耶四九7～39</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_313.html">9<p class="xxx">来八<br>耶五十～五一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_314.html">10<p class="xxx">来九～十18<br>耶五二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_315.html">11<p class="xxx">来十19～39<br>哀一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_316.html">12<p class="xxx">来十一<br>哀三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_317.html">13<p class="xxx">来十二<br>哀四～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_318.html">14<p class="xxx">来十三<br>结一～三</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_319.html">15<p class="xxx">雅一1～12<br>结四～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_320.html">16<p class="xxx">雅一13～27<br>结八～十一</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_321.html">17<p class="xxx">雅二1～13<br>结十二～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_322.html">18<p class="xxx">雅二14～26<br>结十五～十六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_323.html">19<p class="xxx">雅三<br>结十七～十九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_324.html">20<p class="xxx">雅四1～五6<br>结二十1～44</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_325.html">21<p class="xxx">雅五7～20<br>结二十45～二二</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_326.html">22<p class="xxx">彼前一1～12<br>结二三～二四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_327.html">23<p class="xxx">彼前一13～25<br>结二五～二八19</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_328.html">24<p class="xxx">彼前二1～10<br>结二八20～三二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_329.html">25<p class="xxx">彼前二11～25<br>结三三～三四10</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_330.html">26<p class="xxx">彼前三1～13<br>结三四11～三五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_331.html">27<p class="xxx">彼前三14～四<br>结三六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_332.html">28<p class="xxx">彼前五<br>结三七</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_333.html">29<p class="xxx">彼后一1～11<br>结三八～三九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_334.html">30<p class="xxx">彼后一12～21<br>结四十～四一</p></a></td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr></table><table cellspacing="1" border="0"><a name="12"></a></tr><td class="yf" colspan="7"><a style="color:FFFF;"><span class="dynamic-year"></span>12月</a></td>
+    <tr class="td"><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+    <tr><td>　</td><td>　</td>
+        <td><a class="page-navi" href="ynyb_B_335.html">1<p class="xxx">彼后二<br>结四二～四三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_336.html">2<p class="xxx">彼后三<br>结四四～四五8</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_337.html">3<p class="xxx">约壹一～二11<br>结四五9～四六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_338.html">4<p class="xxx">约壹二12～27<br>结四七～四八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_339.html">5<p class="xxx">约壹二28～三10上<br>但一</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_340.html">6<p class="xxx">约壹三10下～24<br>但二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_341.html">7<p class="xxx">约壹四～五3<br>但三～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_342.html">8<p class="xxx">约壹五4～21<br>但五～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_343.html">9<p class="xxx">约贰<br>但七～八</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_344.html">10<p class="xxx">约叁<br>但九～十一1</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_345.html">11<p class="xxx">犹<br>但十一2～十二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_346.html">12<p class="xxx">启一1～20<br>何一～三</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_347.html">13<p class="xxx">启二1～29<br>何四～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_348.html">14<p class="xxx">启三<br>何八～十</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_349.html">15<p class="xxx">启四1～五14<br>何十一～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_350.html">16<p class="xxx">启六<br>珥一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_351.html">17<p class="xxx">启七<br>摩一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_352.html">18<p class="xxx">启八1～12<br>摩三～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_353.html">19<p class="xxx">启八13～九<br>摩六～九</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_354.html">20<p class="xxx">启十<br>俄</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_355.html">21<p class="xxx">启十一<br>拿一～四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_356.html">22<p class="xxx">启十二<br>弥一～五</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_357.html">23<p class="xxx">启十三<br>弥六～七</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_358.html">24<p class="xxx">启十四<br>鸿一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_359.html">25<p class="xxx">启十五～十六<br>哈一～三</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_360.html">26<p class="xxx">启十七<br>番一～三</p></a></td></tr><tr>
+        <td><a class="page-navi" href="ynyb_B_361.html">27<p class="xxx">启十八<br>该一～二</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_362.html">28<p class="xxx">启十九<br>亚一～六</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_363.html">29<p class="xxx">启二十<br>亚七～九</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_364.html">30<p class="xxx">启二一<br>亚十～十四</p></a></td>
+        <td><a class="page-navi" href="ynyb_B_365.html">31<p class="xxx">启二二<br>玛一～四</p></a></td><td>　</td><td>　</td></tr></table>
+    
+</body>
+</html>

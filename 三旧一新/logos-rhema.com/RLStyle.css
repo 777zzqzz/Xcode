@@ -1,0 +1,149 @@
+/* 默认的亮色模式样式 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #efe7d0;
+    color: #333333; /* 默认的字体颜色 */
+}
+
+table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: separate;
+    table-layout: fixed;
+    border-color: #DDDDDD; /* 默认的表格边框颜色 */
+}
+
+table tr {
+    height: auto;
+    background-color: #efe7d0; /* 默认的表格行背景颜色 */
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    font-size: 35px;
+    vertical-align: middle;
+    border: 1px solid #CCCCCC; /* 默认的边框颜色 */
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.page-navi {
+    font-weight: bold;
+    color: #0000ff; /* 默认的链接颜色 */
+    font-size: 28px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.xxx {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #555555; /* 默认的子标题颜色 */
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+a {text-decoration: none;
+    color: #000000; /* 亮色模式下月份的颜色为黑色 */
+}
+
+a span.dynamic-year {
+    color: #000000; /* 亮色模式下年份的颜色为黑色 */
+}
+
+
+/* 响应式调整 - 针对最大宽度为 768px 的屏幕 */
+@media (max-width: 768px) {
+    .page-navi {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .xxx {
+        font-size: 12px;
+        line-height: 1.1;
+    }
+
+    td {
+        padding: 5px;
+    }
+
+    .page-navi.adjust {
+        margin-bottom: 15px;
+    }
+}
+
+/* 响应式调整 - 针对最大宽度为 600px 的屏幕 */
+@media (max-width: 600px) {
+    .page-navi {
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+    .xxx {
+        font-size: 10px;
+        line-height: 1;
+    }
+
+    td {
+        padding: 3px;
+    }
+
+    .page-navi.adjust {
+        margin-bottom: 20px;
+    }
+}
+
+/* 暗夜模式样式 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212; /* 暗色背景 */
+        color: #E0E0E0; /* 暗色模式下的浅色字体 */
+    }
+
+    table tr {
+        background-color: #2E2E2E; /* 暗色背景的表格行 */
+    }
+
+    td {
+        border: 1px solid #444; /* 暗色模式下的边框颜色 */
+    }
+
+    .page-navi {
+        color: #9950f2; /* 暗色模式下的淡紫色链接 */
+    }
+
+    .xxx {
+        color: #888888; /* 暗色模式下的子标题颜色 */
+    }
+
+    .td {
+        background-color: #1E1E1E; /* 表格头背景色 */
+        color: #E0E0E0; /* 表格头字体颜色 */
+    }
+
+    table {
+        border-color: #333333; /* 表格边框颜色 */
+    }
+
+    a {
+        color: #FFFFFF; /* 暗色模式下月份的颜色为白色 */
+    }
+
+    a span.dynamic-year {
+        color: #FFFFFF; /* 暗色模式下年份的颜色为白色 */
+    }
+
+
+}
